@@ -2,8 +2,11 @@ import React from 'react';
 
 const LoginPage = () => {
   return (
-    <div>Login form is here!</div>
-  )
+    <div>
+        <input type = "email" placeholder={'your@email.com'}/>
+        <input type="password" placeholder="password..." />
+    </div>
+  );
 }
 
 export default LoginPage;
