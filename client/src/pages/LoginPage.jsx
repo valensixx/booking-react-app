@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-async function handleLoginSubmit(e){
-    e.preventDefault();
-}
+import axios from 'axios';
 
 const LoginPage = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    async function handleLoginSubmit(e) {
+        e.preventDefault();
+        try {
+            await axios.post('/login', { email, password });
+            alert('You are now logged in!');
+        } catch (e) {
+            alert('Login error! Try again.');
+        }
+    }
+
     return (
         <div className="mt-4 grow flex items-center justify-around">
             <div className="mb-64">
@@ -16,7 +24,7 @@ const LoginPage = () => {
                     <input type="email"
                         placeholder="your@email.com"
                         value={email}
-                        onChange={e => setEmail(e.target, value)} />
+                        onChange={e => setEmail(e.target.value)} />
                     <input type="password"
                         placeholder="password..."
                         value={password}
@@ -24,7 +32,7 @@ const LoginPage = () => {
                     <button className="primary">Login</button>
                     <div className="text-center text-gray-500 py-2">
                         <span>
-                            Do not have account? <Link className="underline text-black" to={'/register'}>Register now</Link>
+                            Do not have an account? <Link className="underline text-black" to={'/register'}>Register now</Link>
                         </span>
                     </div>
                 </form>
