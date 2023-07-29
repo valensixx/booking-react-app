@@ -9,7 +9,7 @@ const LoginPage = () => {
     async function handleLoginSubmit(e) {
         e.preventDefault();
         try {
-            await axios.post('/login', { email, password });
+            await axios.post('/login', {email, password});
             alert('You are now logged in!');
         } catch (e) {
             alert('Login error! Try again.');
